@@ -31,7 +31,7 @@ Test the whole CI/CD pipeline.
 
 Clone the repo, and go to docker-compose folder and type
 
-$ sudo docker-compose up -d 
+ $ sudo docker-compose up -d 
 
 to view the logs don't use the tag -d and don't close the terminal or the containers will be terminating
 
@@ -39,13 +39,12 @@ to view the logs don't use the tag -d and don't close the terminal or the contai
 
 - To get all the initial passwords go to the script folder and type 
 
-$ bash initialpasswords.bash
+ $ bash initialpasswords.bash
 
-NOTE: that after 24 hours the passwords will be gone you can store them somewhere
+NOTE: After 24 hours the passwords will be gone so you can store them somewhere.
 
 - You can install the plugins in jenkins using the script by going to script folder and type
 
-$ bash installplugins.bash
+ $ bash installplugins.bash
 
 // if there is a problem with installing some plugins let me know and you can install it manually in jenkins
-
