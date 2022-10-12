@@ -6,7 +6,7 @@ application and create our docker image finally we push the artifact and docker 
 and if our application is ready we deploy it and launch it inside docker container using docker-compose file.
 
 
-![Plot](./img/DevOps pipeline.drawio.png)
+![Plot](img/DevOps pipeline.drawio.png)
 
 ### Purpose:
 we will be using 
