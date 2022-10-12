@@ -5,6 +5,9 @@ afterward we Build and test the application using NPM for the front end and Mave
 application and create our docker image finally we push the artifact and docker image to Nexus Repository for Version Control
 and if our application is ready we deploy it and launch it inside docker container using docker-compose file.
 
+
+[![Image](/img/DevOps pipeline.drawio.png "DevOps Project - CI/CD with Jenkins Sonar Nexus Gitlab Docker ")]
+
 ### Purpose:
 we will be using 
 - gitlab
