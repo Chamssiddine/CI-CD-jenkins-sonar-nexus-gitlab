@@ -1,0 +1,73 @@
+version:  '2'
+services:
+  jenkins:
+    image: ghassen52/jenkinsdockernode:finalversion
+    privileged: true
+    user: root
+    ports:
+      - 8080:8080
+      - 50003:50000
+    container_name: jenkins
+    networks:
+      devops:
+           ipv4_address: 172.18.0.5
+    volumes:
+      - ~/jenkins_data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+  nexus:
+    image: sonatype/nexus3:3.38.0
+    privileged: true
+    user: root
+    container_name: nexus
+    ports:
+      - 8081:8081
+      - 8085:8085
+    volumes:
+      - ~/Desktop/internship/nexus-data:/nexus-data
+    networks:
+      devops:
+        ipv4_address: 172.18.0.4
+  sonarqube:
+    image: sonarqube:9.3.0-community
+    container_name: sonarqube
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    ports:
+      - "9000:9000"
+
+    networks:
+        devops:
+          ipv4_address: 172.18.0.3
+  gitlab:
+    image:  'gitlab/gitlab-ce:14.7.6-ce.0'
+    container_name: gitlab-ce
+    environment:
+      GITLAB_OMNIBUS_CONFIG: 
+         external_url  "http://example.com"
+    ports:
+      - "8082:80"
+      - "443:443"
+      - "7090:22"
+    volumes:
+      - ~/Desktop/cicd/gitlab/config:/etc/gitlab
+      - ~/Desktop/cicd/gitlab/logs:/var/log/gitlab
+      - ~/Desktop/cicd/gitlab/data:/var/opt/gitlab
+    networks:
+       devops:
+             ipv4_address: 172.18.0.2
+
+volumes:
+  nexus-data: {}
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+
+
+networks:
+  devops:
+    driver: bridge
+    ipam:
+      config:
+        -  subnet: 172.18.0.0/24
