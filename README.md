@@ -37,14 +37,48 @@ to view the logs don't use the tag -d and don't close the terminal or the contai
 
 ### Configuration
 
+
+- You can install the plugins in jenkins using the script by going to script folder and type
+
+ $ bash installplugins.bash
+
+// if there is a problem with installing some plugins let me know or you can install it manually in jenkins
+
 - To get all the initial passwords go to the script folder and type 
 
  $ bash initialpasswords.bash
 
 NOTE: After 24 hours the passwords will be gone so you can store them somewhere.
 
-- You can install the plugins in jenkins using the script by going to script folder and type
+- Change the login password for each of them and some of them will prompt to change it after putting the initial user and password
 
- $ bash installplugins.bash
+- Integrate Gitlab and Nexus and Sonar with jenkins
 
-// if there is a problem with installing some plugins let me know and you can install it manually in jenkins
+Note: there are images inside img folder of the screenshots on how, free to check them.
+
+### Jenkins file
+
+how I did it is create one Jenkins file for each Pipeline I need 
+ - Continuous Integration Pipeline
+ - Daily Pipeline
+ - Continuous Deployment Pipeline
+But we will create a single Jenkins file to make it simpler
+
+### creating the pipeline
+
+ * Go to the main dashboard -> new item -> pipeline 
+
+ * You can configure triggers but I won't dive into it 
+
+ * Copy the jenkins file text (insde jenkinsfile folder) in the section
+ NOTE: You need to change the credentials for clone the repo and the repo link and you need the jhipster app in your gitrepo you will find it in mainapp-main folder
+
+ * Apply and save.
+
+### Test the whole CI/CD pipeline.
+
+ * click on build Now adn you're done
+
+ IMPORTANT: If there is something missing let me know or something not working for you.
+ 
+ 
