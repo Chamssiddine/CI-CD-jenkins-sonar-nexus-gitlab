@@ -1,0 +1,88 @@
+pipeline {
+ 
+    agent any
+    environment { 
+        nexusip = 'clang'
+        gitlabip = 
+        sonarip 
+        nexusip
+    }
+    stages {
+       
+        stage("Clone Code") {
+            steps {
+                script {
+                    // Let's clone the source
+                        git branch: 'main', credentialsId: 'fbb5a934-5728-4825-898b-f739c40dad3e', url: 'http://172.18.0.2/root/mainapp.git'            
+                        }
+                }
+        }
+           // ------ Sonar Quality Gate -----
+        stage('Quality Gate Status Check') {
+            steps{
+                    script {
+                        
+                            withSonarQubeEnv(credentialsId: 'sonarToken', installationName:'sonar') {
+                             //  withMaven{
+                                  // sh "./mvnw initialize sonar:sonar"
+                               //    sh "./mvnw -Pprod clean verify sonar:sonar -Dsonar.host.url=http://localhost:9000"
+                           //   sh "./mvnw -Pprod clean verify sonar:sonar"
+                               sh './mvnw org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar -e -Dsonar.qualitygate.wait=true'
+                               //sh "./mvnw sonar:sonar"
+                               //-e -Dsonar.qualitygate.wait=true
+                             //  }
+                            }
+                    }
+                 }
+        }
+        
+        //       ------ Building Angular Project with Npm -----
+        stage("Npm Install") {
+            steps {
+                script {
+                    sh "npm install"
+                }
+            }
+        }           
+    
+        //       ------ Building Jhipster Project with mvn -----
+        stage("mvn build") {
+            steps {
+                script {
+                    withMaven {
+                    sh "./mvnw install"
+                    }
+                }
+            }
+        }      
+        
+        
+        stage("Dockerizing The app") {
+              steps {
+                sh "./mvnw -Pprod verify jib:dockerBuild"
+            }
+        } 
+       
+            /*stage("Start the database") {
+              steps {
+                  sh "docker-compose -f src/main/docker/postgresql.yml up -d"
+              }
+            } */
+            stage("Running the Container") {
+              steps {
+                sh "docker-compose -f src/main/docker/app.yml up -d"
+              }
+            }
+            
+             stage("deploying docker image to nexus") {
+              steps {
+             
+                sh "docker tag mainapp 172.18.0.4:8085/docker-repo/mainapp:latest"
+                sh "docker push 172.18.0.4:8085/docker-repo/mainapp:latest"
+                
+              }
+            }
+
+    }
+
+}
