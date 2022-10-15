@@ -5,9 +5,6 @@ afterward we Build and test the application using NPM for the front end and Mave
 application and create our docker image finally we push the artifact and docker image to Nexus Repository for Version Control
 and if our application is ready we deploy it and launch it inside docker container using docker-compose file.
 
-
-![Plot](img/pipeline.png)
-
 ### Purpose:
 we will be using 
 - gitlab
@@ -74,7 +71,7 @@ But we will create a single Jenkins file to make it simpler
  * You can configure triggers but I won't dive into it 
 
  * Copy the jenkins file text (insde jenkinsfile folder) in the section
- NOTE: You need to change the credentials for clone the repo and the repo link and you need the jhipster app in your gitrepo you will find it in mainapp-main folder
+ NOTE: You need to change the credentials for clone the repo and the repo link and you need the jhipster app in your gitrepo you will find it in mainapp-main
 
  * Apply and save.
 
@@ -84,4 +81,4 @@ But we will create a single Jenkins file to make it simpler
 
  IMPORTANT: If there is something missing let me know or something not working for you.
  
- 
+ and I will provide step by step PDF on the parts I didn't mention
