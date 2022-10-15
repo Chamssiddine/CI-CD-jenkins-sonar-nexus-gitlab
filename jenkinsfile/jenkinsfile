@@ -76,7 +76,7 @@ pipeline {
             
              stage("deploying docker image to nexus") {
               steps {
-             
+                sh "docker login -u admin -p nexusserver 172.18.0.4:8085 "
                 sh "docker tag mainapp 172.18.0.4:8085/docker-repo/mainapp:latest"
                 sh "docker push 172.18.0.4:8085/docker-repo/mainapp:latest"
                 
