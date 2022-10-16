@@ -5,9 +5,9 @@ afterward we Build and test the application using NPM for the front end and Mave
 application and create our docker image finally we push the artifact and docker image to Nexus Repository for Version Control
 and if our application is ready we deploy it and launch it inside docker container using docker-compose file.
 
-[pip](./CI:CD Pipeline.png)
+![pip](./CI:CD Pipeline.png)
 
-### Purpose:
+## Purpose:
 we will be using 
 - gitlab
 - jenkins
@@ -17,7 +17,7 @@ we will be using
 - Nexus Sonatype
 - Jhipster
 
-### Walkthrough
+## Walkthrough
 
 Launch all the container with docker-compose.
 
@@ -29,7 +29,7 @@ Create Triggers.
 
 Test the whole CI/CD pipeline.
 
-### Launch the Containers
+## Launch the Containers
 
 Clone the repo, and go to docker-compose folder and type
 
@@ -37,8 +37,7 @@ Clone the repo, and go to docker-compose folder and type
 
 to view the logs don't use the tag -d and don't close the terminal or the containers will be terminating
 
-### Configuration
-
+## Configuration
 
 - You can install the plugins in jenkins using the script by going to script folder and type
 
@@ -58,7 +57,7 @@ NOTE: After 24 hours the passwords will be gone so you can store them somewhere.
 
 Note: there are images inside img folder of the screenshots on how, free to check them.
 
-### Jenkins file
+## Jenkins file
 
 how I did it is create one Jenkins file for each Pipeline I need 
  - Continuous Integration Pipeline
@@ -67,7 +66,7 @@ how I did it is create one Jenkins file for each Pipeline I need
  
 But we will create a single Jenkins file to make it simpler.
 
-### creating the pipeline
+## creating the pipeline
 
  * Go to the main dashboard -> new item -> pipeline 
 
@@ -78,7 +77,7 @@ But we will create a single Jenkins file to make it simpler.
 
  * Apply and save.
 
-### Test the whole CI/CD pipeline.
+## Test the whole CI/CD pipeline.
 
  * click on build Now adn you're done
 
