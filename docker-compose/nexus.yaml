@@ -1,0 +1,25 @@
+version:  '2'
+services:
+  nexus:
+    image: sonatype/nexus3:3.38.0
+    privileged: true
+    user: root
+    container_name: nexus
+    ports:
+      - 8081:8081
+      - 8085:8085
+    volumes:
+      - ~/Desktop/internship/nexus-data:/nexus-data
+    networks:
+      devops:
+        ipv4_address: 172.18.0.4
+
+volumes:
+  nexus-data: {}
+
+networks:
+  devops:
+    driver: bridge
+    ipam:
+      config:
+        -  subnet: 172.18.0.0/24
