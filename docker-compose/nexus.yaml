@@ -9,7 +9,7 @@ services:
       - 8081:8081
       - 8085:8085
     volumes:
-      - ~/Desktop/internship/nexus-data:/nexus-data
+      - ~/nexus-data:/nexus-data
     networks:
       devops:
         ipv4_address: 172.18.0.4
