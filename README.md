@@ -4,79 +4,75 @@ To streamline the software development process, I created a sufficient CI/CD pip
 ![plot](pip.png)
 
 ## Purpose:
-we will be using 
+The purpose of this documentation is to guide you through the steps to set up a CI/CD pipeline using:
 - gitlab
 - jenkins
 - Maven
-- Docker & Docker-compose
+- Docker & Docker Compose
 - SonarQube
 - Nexus Sonatype
 - Jhipster
 
 ## Walkthrough
+The following sections provide a step-by-step guide to create an effective CI/CD pipeline.
 
-Launch all the container with docker-compose.
+### Launch the container
 
-Configure Jenkins, Gitlab, SonarQube, NexusSonatype.
+The first step is to launch all the containers with Docker Compose. To do this, clone the repo and go to the docker-compose folder. Then, type the following command:
 
-Create Jenkinsfile which container the stages of our pipeline.
+```
+$ sudo docker-compose up -d
+```
+Note that to view the logs, you should not use the -d tag, and you should not close the terminal, or the containers will terminate.
 
-Create Triggers.
+### Configuration
+The next step is to configure Jenkins, GitLab, SonarQube, and Nexus Sonatype. To do this, follow these steps:
 
-Test the whole CI/CD pipeline.
+* Install the necessary plugins in Jenkins using the script by going to the script folder and typing:
 
-## Launch the Containers
+```
+$ bash installplugins.bash
+```
 
-Clone the repo, and go to docker-compose folder and type
+If there are any issues with installing some plugins, you can install them manually in Jenkins.
 
- `$ sudo docker-compose up -d`
+* To get all the initial passwords, go to the script folder and type:
 
-to view the logs don't use the tag -d and don't close the terminal or the containers will be terminating
+```
+$ bash initialpasswords.bash
+```
 
-## Configuration
+Note that after 24 hours, the passwords will expire, so you should store them somewhere.
 
-- You can install the plugins in jenkins using the script by going to script folder and type
+Change the login password for each tool. Some of them will prompt you to change the password after putting in the initial user and password.
 
- `$ bash installplugins.bash`
+Integrate GitLab and Nexus and Sonar with Jenkins. You can follow the PDF in my repo. Note that there are images inside the img folder that show screenshots on how to do this.
 
-// if there is a problem with installing some plugins let me know or you can install it manually in jenkins
+### Jenkinsfile
 
-- To get all the initial passwords go to the script folder and type 
+To create a pipeline, you need to create a Jenkinsfile. You can create one Jenkinsfile for each pipeline you need, such as Continuous Integration Pipeline, Daily Pipeline, and Continuous Deployment Pipeline. However, to simplify the process, we will create a single Jenkinsfile.
 
- `$ bash initialpasswords.bash`
+### Creating the Pipeline
 
-NOTE: After 24 hours the passwords will be gone so you can store them somewhere.
+To create the pipeline, follow these steps:
 
-- Change the login password for each of them and some of them will prompt to change it after putting the initial user and password.
+* Go to the main dashboard -> new item -> pipeline.
 
-- Integrate Gitlab and Nexus and Sonar with jenkins you can follow the pdf in my repo.
+* Configure triggers if needed, but we won't dive into that here.
 
-Note: there are images inside img folder of the screenshots on how, free to check them.
+* Copy the text from the Jenkinsfile (inside the jenkinsfile folder) into the section.
 
-## Jenkins file
+Note that you need to change the credentials for cloning the repo and the repo link. You also need the JHipster app in your Git repo. You will find it in mainapp-main.
 
-how I did it is create one Jenkins file for each Pipeline I need 
- - Continuous Integration Pipeline
- - Daily Pipeline
- - Continuous Deployment Pipeline
- 
-But we will create a single Jenkins file to make it simpler.
+* Apply and save.
 
-## creating the pipeline
+### Testing the Pipeline
 
- * Go to the main dashboard -> new item -> pipeline 
+To test the entire CI/CD pipeline, click on "build now," and you're done and of course if you configured the trigger correctly you can push to your repo and the pipeline will start.
 
- * You can configure triggers but I won't dive into it 
+### Conclusion
+By following the steps outlined in this documentation, you should now have an effective CI/CD pipeline in place. This pipeline will enable you to build, test, and deploy your software quickly and reliably, helping you to deliver high-quality software to your users faster than
 
- * Copy the jenkins file text (insde jenkinsfile folder) in the section
- NOTE: You need to change the credentials for clone the repo and the repo link and you need the jhipster app in your gitrepo you will find it in mainapp-main
 
- * Apply and save.
 
-## Test the whole CI/CD pipeline.
 
- * click on build Now adn you're done
-
- IMPORTANT: If there is something missing let me know or something not working for you.
- 
- and I will provide step by step PDF on the parts I didn't mention
