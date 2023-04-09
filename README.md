@@ -70,7 +70,7 @@ Note that you need to change the credentials for cloning the repo and the repo l
 
 To test the entire CI/CD pipeline, click on "build now," and you're done and of course if you configured the trigger correctly you can push to your repo and the pipeline will start.
 
-### Step 6: Conclusion
+## Conclusion
 By following the steps outlined in this documentation, you should now have an effective CI/CD pipeline in place. This pipeline will enable you to build, test, and deploy your software quickly and reliably, helping you to deliver high-quality software to your users faster than
 
 
