@@ -16,7 +16,7 @@ The purpose of this documentation is to guide you through the steps to set up a 
 ## Walkthrough
 The following sections provide a step-by-step guide to create an effective CI/CD pipeline.
 
-### Launch the container
+### Step 1: Launch the container
 
 The first step is to launch all the containers with Docker Compose. To do this, clone the repo and go to the docker-compose folder. Then, type the following command:
 
@@ -25,7 +25,7 @@ $ sudo docker-compose up -d
 ```
 Note that to view the logs, you should not use the -d tag, and you should not close the terminal, or the containers will terminate.
 
-### Configuration
+### Step 2: Configuration
 The next step is to configure Jenkins, GitLab, SonarQube, and Nexus Sonatype. To do this, follow these steps:
 
 * Install the necessary plugins in Jenkins using the script by going to the script folder and typing:
@@ -48,11 +48,11 @@ Change the login password for each tool. Some of them will prompt you to change 
 
 Integrate GitLab and Nexus and Sonar with Jenkins. You can follow the PDF in my repo. Note that there are images inside the img folder that show screenshots on how to do this.
 
-### Jenkinsfile
+### Step 3: Jenkinsfile
 
 To create a pipeline, you need to create a Jenkinsfile. You can create one Jenkinsfile for each pipeline you need, such as Continuous Integration Pipeline, Daily Pipeline, and Continuous Deployment Pipeline. However, to simplify the process, we will create a single Jenkinsfile.
 
-### Creating the Pipeline
+### Step 4: Creating the Pipeline
 
 To create the pipeline, follow these steps:
 
@@ -66,11 +66,11 @@ Note that you need to change the credentials for cloning the repo and the repo l
 
 * Apply and save.
 
-### Testing the Pipeline
+### Step 5: Testing the Pipeline
 
 To test the entire CI/CD pipeline, click on "build now," and you're done and of course if you configured the trigger correctly you can push to your repo and the pipeline will start.
 
-### Conclusion
+### Step 6: Conclusion
 By following the steps outlined in this documentation, you should now have an effective CI/CD pipeline in place. This pipeline will enable you to build, test, and deploy your software quickly and reliably, helping you to deliver high-quality software to your users faster than
 
 
